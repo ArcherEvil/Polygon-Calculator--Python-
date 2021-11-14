@@ -2,11 +2,12 @@
 
 from tkinter import *
 import tkinter.font as tkFont
+import os
+import sys
 
-
-root = Tk() # Tkinter root
-root.title("Polygon Calculator (By:Archer)") #Tkinter title
-root.geometry("900x500") #tkinter window Size
+root = Tk()  # Tkinter root
+root.title("Polygon Calculator (By:Archer)")  # Tkinter title
+root.geometry("900x500")  # tkinter window Size
 
 
 # Classes
@@ -63,4 +64,3 @@ class App:  # All the GUI things is in here
 
 if __name__ == "__main__":
     App(root)
-

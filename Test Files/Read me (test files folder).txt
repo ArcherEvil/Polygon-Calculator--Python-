@@ -1,0 +1,1 @@
+this file is where i'm gonna test the new features before applying them to the main.py file
