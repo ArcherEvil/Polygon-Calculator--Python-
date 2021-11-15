@@ -2,7 +2,6 @@
 
 from tkinter import *
 import tkinter.font as tkFont
-from PIL import ImageTk, Image
 
 
 root = Tk() # Tkinter root
@@ -243,13 +242,6 @@ class App:  # All the GUI things is in here
                         title = Label(f_title, text=value[1], font=title_font)
                         self.inputlist.append(title)
                         title.pack()
-
-                        # Image
-                        image1 = Image.open("Images/triangle.jpg")
-                        test = ImageTk.PhotoImage(image1)
-                        label1 = Label(image=test)
-                        label1.image = test
-                        label1.pack()
 
                         # Entrys
 
