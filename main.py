@@ -2,6 +2,7 @@
 
 from tkinter import *
 import tkinter.font as tkFont
+from PIL import ImageTk, Image
 
 
 root = Tk() # Tkinter root
@@ -74,6 +75,7 @@ class App:  # All the GUI things is in here
             case 0: #Triangle
                 print("Triangle")# Triangle
                 f_submenu = self.create_frame(self.f_menu) # Creating a sub menu
+                self.f_submenu = f_submenu
                 f_submenu.pack()
                 self.menuitems.append(f_submenu)
 
@@ -101,6 +103,7 @@ class App:  # All the GUI things is in here
                 print("Square")# Square
 
                 f_submenu = self.create_frame(self.f_menu) # Creating a sub menu
+                self.f_submenu = f_submenu
                 f_submenu.pack()
                 self.menuitems.append(f_submenu)
 
@@ -128,6 +131,7 @@ class App:  # All the GUI things is in here
                 print("Pentagon")# Pentagon
 
                 f_submenu = self.create_frame(self.f_menu) # Creating a sub menu
+                self.f_submenu = f_submenu
                 f_submenu.pack()
                 self.menuitems.append(f_submenu)
 
@@ -155,6 +159,7 @@ class App:  # All the GUI things is in here
                 print("Hexagon")# Hexagon
                 
                 f_submenu = self.create_frame(self.f_menu) # Creating a sub menu
+                self.f_submenu = f_submenu
                 f_submenu.pack()
                 self.menuitems.append(f_submenu)
 
@@ -213,11 +218,44 @@ class App:  # All the GUI things is in here
     def input(self, value):
         print(value)
 
+        try:
+            for n in self.inputlist:
+                n.destroy()
+        except:
+            pass
+
         match value[0]:
             case "triangle":
                 match value[1]:
                     case "Area":
-                        pass
+                        print(value)
+                        f_input = self.create_frame(self.f_submenu)
+                        f_input.config(padx=20)
+                        self.inputlist.append(f_input)
+                        f_input.grid(row=0, column=1)
+
+                        # Input title
+                        f_title = self.create_frame(f_input)
+                        f_title.pack()
+
+                        self.inputlist.append(f_title)
+                        title_font = tkFont.Font(family="Segoe UI Bold", size=17, underline=True)
+                        title = Label(f_title, text=value[1], font=title_font)
+                        self.inputlist.append(title)
+                        title.pack()
+
+                        # Image
+                        image1 = Image.open("Images/triangle.jpg")
+                        test = ImageTk.PhotoImage(image1)
+                        label1 = Label(image=test)
+                        label1.image = test
+                        label1.pack()
+
+                        # Entrys
+
+                        
+
+
                     case "Perimeter":
                         pass
                     case "Pythagorean theorem":
