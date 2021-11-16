@@ -7,7 +7,7 @@ A program with the purpose of being able to calculate various types of formulas 
 
 * `main.py file is the main file with the code`
 
-* `Script written in most recent Python 3.10`
+* `Script written in most recent Python 3.10` - Download [Here.](https://www.python.org)
 
 ## Authors
 
