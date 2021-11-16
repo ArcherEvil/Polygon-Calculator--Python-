@@ -3,6 +3,8 @@
 from tkinter import *
 import tkinter.font as tkFont
 from PIL import ImageTk, Image
+import os, sys
+
 
 
 root = Tk() # Tkinter root
@@ -75,6 +77,7 @@ class App:  # All the GUI things is in here
             case 0: #Triangle
                 print("Triangle")# Triangle
                 f_submenu = self.create_frame(self.f_menu) # Creating a sub menu
+                f_submenu.config(pady=20)
                 self.f_submenu = f_submenu
                 f_submenu.pack()
                 self.menuitems.append(f_submenu)
@@ -98,7 +101,9 @@ class App:  # All the GUI things is in here
                     button = Radiobutton(f_submenu_options, text=n, value=n, variable=var,
                      command=lambda: self.input(["triangle", var.get()]))
                     self.menuitems.append(button)
-                    button.pack()            
+                    button.pack() 
+
+                           
             case 1: #Square
                 print("Square")# Square
 
@@ -212,6 +217,8 @@ class App:  # All the GUI things is in here
                     command=lambda: self.input(["custom", var.get()]))
                     self.menuitems.append(button)
                     button.pack()
+                
+
 
 
     # Sub menu functions
@@ -248,6 +255,18 @@ class App:  # All the GUI things is in here
                         f_entry = self.create_frame(f_input)
                         self.inputlist.append(f_entry)
                         f_entry.pack()
+
+                        # Image
+                        img = Image.open("Images/triangle.png") # Open Image
+                        resized = img.resize((100,100), Image.ANTIALIAS) # Resize Image
+                        test = ImageTk.PhotoImage(resized)
+
+                        label_img = Label(f_entry, image=test)
+                        label_img.image = test
+                        self.inputlist.append(label_img)
+                        label_img.pack(side=RIGHT)
+
+
                         entry_warning = Label(f_entry, text="(A minimum of 2 entrys need to be filled)", 
                         font=tkFont.Font(family="Segoe UI", size=10, underline=True))
                         self.inputlist.append(entry_warning)
@@ -256,16 +275,87 @@ class App:  # All the GUI things is in here
                         self.inputlist.append(f_theentrys)
                         f_theentrys.pack()
 
-                        
-
-
-                        
-
-
                     case "Perimeter":
-                        pass
+                        print(value)
+                        f_input = self.create_frame(self.f_submenu)
+                        f_input.config(padx=20)
+                        self.inputlist.append(f_input)
+                        f_input.grid(row=0, column=1)
+
+                        # Input title
+                        f_title = self.create_frame(f_input)
+                        f_title.pack()
+
+                        self.inputlist.append(f_title)
+                        title_font = tkFont.Font(family="Segoe UI Bold", size=17, underline=True)
+                        title = Label(f_title, text=value[1], font=title_font)
+                        self.inputlist.append(title)
+                        title.pack()
+
+                        # Entrys
+                        f_entry = self.create_frame(f_input)
+                        self.inputlist.append(f_entry)
+                        f_entry.pack()
+
+                        # Image
+                        img = Image.open("Images/triangle.png") # Open Image
+                        resized = img.resize((100,100), Image.ANTIALIAS) # Resize Image
+                        test = ImageTk.PhotoImage(resized)
+
+                        label_img = Label(f_entry, image=test)
+                        label_img.image = test
+                        self.inputlist.append(label_img)
+                        label_img.pack(side=RIGHT)
+
+
+                        entry_warning = Label(f_entry, text="(A minimum of 2 entrys need to be filled)", 
+                        font=tkFont.Font(family="Segoe UI", size=10, underline=True))
+                        self.inputlist.append(entry_warning)
+                        entry_warning.pack()
+                        f_theentrys = self.create_frame(f_entry)
+                        self.inputlist.append(f_theentrys)
+                        f_theentrys.pack()
+                    
                     case "Pythagorean theorem":
-                        pass
+                        print(value)
+                        f_input = self.create_frame(self.f_submenu)
+                        f_input.config(padx=20)
+                        self.inputlist.append(f_input)
+                        f_input.grid(row=0, column=1)
+
+                        # Input title
+                        f_title = self.create_frame(f_input)
+                        f_title.pack()
+
+                        self.inputlist.append(f_title)
+                        title_font = tkFont.Font(family="Segoe UI Bold", size=17, underline=True)
+                        title = Label(f_title, text=value[1], font=title_font)
+                        self.inputlist.append(title)
+                        title.pack()
+
+                        # Entrys
+                        f_entry = self.create_frame(f_input)
+                        self.inputlist.append(f_entry)
+                        f_entry.pack()
+
+                        # Image
+                        img = Image.open("Images/triangle.png") # Open Image
+                        resized = img.resize((100,100), Image.ANTIALIAS) # Resize Image
+                        test = ImageTk.PhotoImage(resized)
+
+                        label_img = Label(f_entry, image=test)
+                        label_img.image = test
+                        self.inputlist.append(label_img)
+                        label_img.pack(side=RIGHT)
+
+
+                        entry_warning = Label(f_entry, text="(A minimum of 2 entrys need to be filled)", 
+                        font=tkFont.Font(family="Segoe UI", size=10, underline=True))
+                        self.inputlist.append(entry_warning)
+                        entry_warning.pack()
+                        f_theentrys = self.create_frame(f_entry)
+                        self.inputlist.append(f_theentrys)
+                        f_theentrys.pack()
             case "square":
                 match value[1]:
                     case "Area":
