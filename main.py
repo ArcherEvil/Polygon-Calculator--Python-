@@ -244,6 +244,19 @@ class App:  # All the GUI things is in here
                         title.pack()
 
                         # Entrys
+                        f_entry = self.create_frame(f_input)
+                        self.inputlist.append(f_entry)
+                        f_entry.pack()
+                        entry_warning = Label(f_entry, text="(A minimum of 2 entrys need to be filled)", 
+                        font=tkFont.Font(family="Segoe UI", size=10, underline=True))
+                        self.inputlist.append(entry_warning)
+                        entry_warning.pack()
+                        f_theentrys = self.create_frame(f_entry)
+                        self.inputlist.append(f_theentrys)
+                        f_theentrys.pack()
+
+                        
+
 
                         
 
