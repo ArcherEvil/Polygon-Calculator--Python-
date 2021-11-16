@@ -2,6 +2,7 @@
 
 from tkinter import *
 import tkinter.font as tkFont
+from PIL import ImageTk, Image
 
 
 root = Tk() # Tkinter root
