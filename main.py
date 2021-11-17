@@ -92,7 +92,7 @@ class App:  # All the GUI things is in here
                 submenu_title.pack()
 
                 # submenu radio buttons
-                names = ["Area", "Perimeter", "Pythagorean theorem"]
+                names = ["Area", "Perimeter"]
 
                 var = StringVar()
                 var.set("a")
@@ -219,11 +219,23 @@ class App:  # All the GUI things is in here
                     button.pack()
                 
 
+    # Calculating
+    def Calculate(self, types, value):
 
+        match types[0]:
+            case "triangle":
+                match types[1]:
+                    case "Area":
+                        print(types)
+                        print(value)
+                    case "Perimeter":
+                        print(types)
+                        print(value)
+            
 
     # Sub menu functions
     def input(self, value):
-        print(value)
+        
 
         try:
             for n in self.inputlist:
@@ -235,15 +247,15 @@ class App:  # All the GUI things is in here
             case "triangle":
                 match value[1]:
                     case "Area":
-                        print(value)
+                        
                         f_input = self.create_frame(self.f_submenu)
                         f_input.config(padx=20)
                         self.inputlist.append(f_input)
-                        f_input.grid(row=0, column=1)
+                        f_input.grid(row=0, column=1, rowspan=3)
 
                         # Input title
                         f_title = self.create_frame(f_input)
-                        f_title.pack()
+                        f_title.grid(row=0, column=0)
 
                         self.inputlist.append(f_title)
                         title_font = tkFont.Font(family="Segoe UI Bold", size=17, underline=True)
@@ -254,37 +266,78 @@ class App:  # All the GUI things is in here
                         # Entrys
                         f_entry = self.create_frame(f_input)
                         self.inputlist.append(f_entry)
-                        f_entry.pack()
+                        f_entry.grid(row=2, column=0)
 
                         # Image
                         img = Image.open("Images/triangle.png") # Open Image
                         resized = img.resize((100,100), Image.ANTIALIAS) # Resize Image
                         test = ImageTk.PhotoImage(resized)
 
-                        label_img = Label(f_entry, image=test)
+                        label_img = Label(f_input, image=test)
                         label_img.image = test
                         self.inputlist.append(label_img)
-                        label_img.pack(side=RIGHT)
+                        label_img.grid(row=0, column=1, rowspan=2)
 
 
-                        entry_warning = Label(f_entry, text="(A minimum of 2 entrys need to be filled)", 
+                        entry_warning = Label(f_title, text="(A minimum of 2 entrys need to be filled)", 
                         font=tkFont.Font(family="Segoe UI", size=10, underline=True))
                         self.inputlist.append(entry_warning)
                         entry_warning.pack()
                         f_theentrys = self.create_frame(f_entry)
                         self.inputlist.append(f_theentrys)
                         f_theentrys.pack()
+                        
+                        side_label = Label(f_theentrys, text="Sides: ", font=tkFont.Font(family="Segoe UI SemiBold", size=16), pady=5)
+                        self.inputlist.append(side_label)
+                        side_label.grid(row=0, column=0, columnspan=2)
+
+                        # finally the entrys :)
+                        var_a = StringVar()
+
+                        text_font = tkFont.Font(family="Segoe UI", size=15)
+
+                        text_a = Label(f_theentrys, text="Side A: ", font=text_font)
+                        entry_a = Entry(f_theentrys, borderwidth=0, width=20)
+                        text_a.grid(row=1, column=0)
+                        entry_a.grid(row=1, column=1, ipady=5)
+                        self.inputlist.append(text_a)
+                        self.inputlist.append(entry_a)
+
+                        text_b = Label(f_theentrys, text="Side B: ", font=text_font)
+                        entry_b = Entry(f_theentrys, borderwidth=0)
+                        text_b.grid(row=2, column=0)
+                        entry_b.grid(row=2, column=1, ipady=5)
+                        self.inputlist.append(text_b)
+                        self.inputlist.append(entry_b)
+
+                        text_c = Label(f_theentrys, text="Side C: \n (hypotenuse)", font=text_font)
+                        entry_c = Entry(f_theentrys, borderwidth=0)
+                        text_c.grid(row=3, column=0)
+                        entry_c.grid(row=3, column=1, ipady=5)
+                        self.inputlist.append(text_c)
+                        self.inputlist.append(entry_c)
+
+                        # Calculate Button
+
+                        calculate_button = Button(f_theentrys, text="Calculate",
+                         fg="#e6e6e6", bg="#1a1a1a", font=tkFont.Font(family="Segoe UI Bold"),
+                          command=lambda: self.Calculate(value, [entry_a.get(), entry_b.get(), entry_c.get()]))
+                        self.inputlist.append(calculate_button)
+                        calculate_button.grid(row=0, column=2, rowspan=5, columnspan=3, padx=20)
+
+
+
 
                     case "Perimeter":
-                        print(value)
+                        
                         f_input = self.create_frame(self.f_submenu)
                         f_input.config(padx=20)
                         self.inputlist.append(f_input)
-                        f_input.grid(row=0, column=1)
+                        f_input.grid(row=0, column=1, rowspan=3)
 
                         # Input title
                         f_title = self.create_frame(f_input)
-                        f_title.pack()
+                        f_title.grid(row=0, column=0)
 
                         self.inputlist.append(f_title)
                         title_font = tkFont.Font(family="Segoe UI Bold", size=17, underline=True)
@@ -295,67 +348,67 @@ class App:  # All the GUI things is in here
                         # Entrys
                         f_entry = self.create_frame(f_input)
                         self.inputlist.append(f_entry)
-                        f_entry.pack()
+                        f_entry.grid(row=2, column=0)
 
                         # Image
                         img = Image.open("Images/triangle.png") # Open Image
                         resized = img.resize((100,100), Image.ANTIALIAS) # Resize Image
                         test = ImageTk.PhotoImage(resized)
 
-                        label_img = Label(f_entry, image=test)
+                        label_img = Label(f_input, image=test)
                         label_img.image = test
                         self.inputlist.append(label_img)
-                        label_img.pack(side=RIGHT)
+                        label_img.grid(row=0, column=1, rowspan=2)
 
 
-                        entry_warning = Label(f_entry, text="(A minimum of 2 entrys need to be filled)", 
+                        entry_warning = Label(f_title, text="(A minimum of 2 entrys need to be filled)", 
                         font=tkFont.Font(family="Segoe UI", size=10, underline=True))
                         self.inputlist.append(entry_warning)
                         entry_warning.pack()
                         f_theentrys = self.create_frame(f_entry)
                         self.inputlist.append(f_theentrys)
                         f_theentrys.pack()
+                        
+                        side_label = Label(f_theentrys, text="Sides: ", font=tkFont.Font(family="Segoe UI SemiBold", size=16), pady=5)
+                        self.inputlist.append(side_label)
+                        side_label.grid(row=0, column=0, columnspan=2)
+
+                        # finally the entrys :)
+                        var_a = StringVar()
+
+                        text_font = tkFont.Font(family="Segoe UI", size=15)
+
+                        text_a = Label(f_theentrys, text="Side A: ", font=text_font)
+                        entry_a = Entry(f_theentrys, borderwidth=0, width=20)
+                        text_a.grid(row=1, column=0)
+                        entry_a.grid(row=1, column=1, ipady=5)
+                        self.inputlist.append(text_a)
+                        self.inputlist.append(entry_a)
+
+                        text_b = Label(f_theentrys, text="Side B: ", font=text_font)
+                        entry_b = Entry(f_theentrys, borderwidth=0)
+                        text_b.grid(row=2, column=0)
+                        entry_b.grid(row=2, column=1, ipady=5)
+                        self.inputlist.append(text_b)
+                        self.inputlist.append(entry_b)
+
+                        text_c = Label(f_theentrys, text="Side C: \n (hypotenuse)", font=text_font)
+                        entry_c = Entry(f_theentrys, borderwidth=0)
+                        text_c.grid(row=3, column=0)
+                        entry_c.grid(row=3, column=1, ipady=5)
+                        self.inputlist.append(text_c)
+                        self.inputlist.append(entry_c)
+
+                        # Calculate Button
+
+                        calculate_button = Button(f_theentrys, text="Calculate",
+                         fg="#e6e6e6", bg="#1a1a1a", font=tkFont.Font(family="Segoe UI Bold"),
+                          command=lambda: self.Calculate(value, [entry_a.get(), entry_b.get(), entry_c.get()]))
+                        self.inputlist.append(calculate_button)
+                        calculate_button.grid(row=0, column=2, rowspan=5, columnspan=3, padx=20)
+
+
                     
-                    case "Pythagorean theorem":
-                        print(value)
-                        f_input = self.create_frame(self.f_submenu)
-                        f_input.config(padx=20)
-                        self.inputlist.append(f_input)
-                        f_input.grid(row=0, column=1)
-
-                        # Input title
-                        f_title = self.create_frame(f_input)
-                        f_title.pack()
-
-                        self.inputlist.append(f_title)
-                        title_font = tkFont.Font(family="Segoe UI Bold", size=17, underline=True)
-                        title = Label(f_title, text=value[1], font=title_font)
-                        self.inputlist.append(title)
-                        title.pack()
-
-                        # Entrys
-                        f_entry = self.create_frame(f_input)
-                        self.inputlist.append(f_entry)
-                        f_entry.pack()
-
-                        # Image
-                        img = Image.open("Images/triangle.png") # Open Image
-                        resized = img.resize((100,100), Image.ANTIALIAS) # Resize Image
-                        test = ImageTk.PhotoImage(resized)
-
-                        label_img = Label(f_entry, image=test)
-                        label_img.image = test
-                        self.inputlist.append(label_img)
-                        label_img.pack(side=RIGHT)
-
-
-                        entry_warning = Label(f_entry, text="(A minimum of 2 entrys need to be filled)", 
-                        font=tkFont.Font(family="Segoe UI", size=10, underline=True))
-                        self.inputlist.append(entry_warning)
-                        entry_warning.pack()
-                        f_theentrys = self.create_frame(f_entry)
-                        self.inputlist.append(f_theentrys)
-                        f_theentrys.pack()
             case "square":
                 match value[1]:
                     case "Area":
