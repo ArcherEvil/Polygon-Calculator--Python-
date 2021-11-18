@@ -1,1 +1,0 @@
-# File where the program calculate.
